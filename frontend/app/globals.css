@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-bg text-white font-body;
+  background-image:
+    radial-gradient(circle at 18% 10%, rgba(239, 68, 68, 0.18), transparent 35%),
+    radial-gradient(circle at 85% 12%, rgba(56, 189, 248, 0.14), transparent 30%),
+    linear-gradient(160deg, #06080d 0%, #05070c 50%, #090d16 100%);
+  min-height: 100vh;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.mascot-glow {
+  box-shadow:
+    0 0 0 1px rgba(239, 68, 68, 0.35),
+    0 0 25px rgba(239, 68, 68, 0.25),
+    inset 0 0 25px rgba(239, 68, 68, 0.08);
+}
+
+@keyframes bannerEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes mascotPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(239, 68, 68, 0.35),
+      0 0 24px rgba(239, 68, 68, 0.2),
+      inset 0 0 24px rgba(239, 68, 68, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(239, 68, 68, 0.55),
+      0 0 38px rgba(239, 68, 68, 0.35),
+      inset 0 0 30px rgba(239, 68, 68, 0.16);
+  }
+}
+
+@keyframes titleSheen {
+  0% {
+    background-position: -120% 0;
+  }
+  100% {
+    background-position: 220% 0;
+  }
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.65);
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+    box-shadow: 0 0 0 8px rgba(52, 211, 153, 0);
+  }
+}
+
+@keyframes scanSweep {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.18;
+  }
+  70% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateY(130%);
+    opacity: 0;
+  }
+}
+
+.banner-enter {
+  animation: bannerEnter 450ms ease-out both;
+}
+
+.mascot-pulse {
+  animation: mascotPulse 2.8s ease-in-out infinite;
+  transition: transform 220ms ease;
+}
+
+.mascot-pulse:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.title-sheen {
+  background-image: linear-gradient(110deg, rgba(255, 255, 255, 0) 18%, rgba(255, 255, 255, 0.45) 28%, rgba(255, 255, 255, 0) 38%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: titleSheen 3.5s linear infinite;
+}
+
+.status-pulse {
+  animation: statusPulse 1.8s ease-in-out infinite;
+}
+
+.scanline-overlay {
+  position: absolute;
+  inset: -30% 0 auto 0;
+  height: 34%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 120, 120, 0.18),
+    rgba(255, 255, 255, 0)
+  );
+  mix-blend-mode: screen;
+  animation: scanSweep 3.8s ease-in-out infinite;
+}
